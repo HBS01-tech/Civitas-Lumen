@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- ADAM -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CIVITAS LUMEN - Accueil">
+    <meta name="author" content="Adam DARS">
+    <title>CIVITAS LUMEN</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 1s ease-out; }
+        .carousel-item { transition: transform 0.5s ease, opacity 0.5s ease; }
+        .carousel-control { cursor: pointer; }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-green-100 font-sans">
+
+    <nav class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide">CIVITAS LUMEN</a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-green-200 transition font-bold">Accueil</a>
+                <a href="ytca25.html" class="hover:text-green-200 transition">YTCA 2025</a>
+                <a href="app.html" class="hover:text-green-200 transition">Application</a>
+                <a href="archi.html" class="hover:text-green-200 transition">Architecture</a>
+                <a href="contact.html" class="hover:text-green-200 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ADAM -->
+    <header class="py-20">
+        <div class="container mx-auto px-4">
+            <div id="carousel" class="relative overflow-hidden rounded-2xl shadow-2xl">
+                <div class="carousel-inner flex transition-transform duration-500" id="carousel-inner">
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img1.jpg" alt="Slide 1" class="w-full h-96 object-cover"></div>
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img2.jpg" alt="Slide 2" class="w-full h-96 object-cover"></div>
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img3.jpg" alt="Slide 3" class="w-full h-96 object-cover"></div>
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img4.jpg" alt="Slide 4" class="w-full h-96 object-cover"></div>
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img5.jpg" alt="Slide 5" class="w-full h-96 object-cover"></div>
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img6.jpg" alt="Slide 6" class="w-full h-96 object-cover"></div>
+                    <div class="carousel-item flex-shrink-0 w-full"><img src="assets/images/slides/img7.jpg" alt="Slide 7" class="w-full h-96 object-cover"></div>
+                </div>
+                <button class="carousel-control absolute left-0 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-4 rounded-r-lg hover:bg-green-700" onclick="prevSlide()">‹</button>
+                <button class="carousel-control absolute right-0 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-4 rounded-l-lg hover:bg-green-700" onclick="nextSlide()">›</button>
+            </div>
+        </div>
+        <script>
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carousel-item');
+            const totalSlides = slides.length;
+            function showSlide(index) {
+                document.getElementById('carousel-inner').style.transform = `translateX(-${index * 100}%)`;
+            }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            }
+            setInterval(nextSlide, 5000);
+        </script>
+    </header>
+
+    <!-- 3D Design Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-green-800 mb-12 animate-fade-in">Design 3D</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img1.jpg" alt="Design 1" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <p class="text-white font-semibold">Conception Innovante</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img4.jpg" alt="Design 2" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <p class="text-white font-semibold">Conception Moderne</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img7.jpg" alt="Design 3" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <p class="text-white font-semibold">Conception Unique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg animate-fade-in">
+                <h2 class="text-2xl font-semibold text-green-800 mb-4">YTCA 2025</h2>
+                <p class="text-gray-600">L’Université Mohammed VI Polytechnique (UM6P), en partenariat avec le Cameroon Youth School Tech Incubator (CAYSTI), organise la deuxième édition du Youth Tech Challenge Africa (YTCA 2025). Cet événement rassemble de jeunes talents du Maroc et du Cameroun, animés par une passion commune pour la robotique et les technologies innovantes sous forme de trois groupes hybrides.</p>
+                <a href="ytca25.html" class="text-green-600 hover:text-green-800 font-semibold mt-4 inline-block">En savoir plus</a>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg animate-fade-in">
+                <h2 class="text-2xl font-semibold text-green-800 mb-4">Slogan</h2>
+                <blockquote class="border-l-4 border-green-600 pl-4 italic text-gray-600">
+                    <p>Quand La Cité S'éclaire, L'avenir Devient Clair.</p>
+                    <footer class="text-sm text-gray-500">— CIVITAS LUMEN</footer>
+                    <p>Civitas : Cité en Latin</p>
+                    <p>Lumen : Lumière en Latin</p>
+                </blockquote>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg animate-fade-in">
+                <h2 class="text-2xl font-semibold text-green-800 mb-4">Liens Utiles</h2>
+                <ul class="list-disc pl-5 text-gray-600">
+                    <li><a href="app.html" class="text-green-600 hover:text-green-800">Télécharger l'application *CIVITAS LUMEN*</a></li>
+                    <li><a href="archi.html" class="text-green-600 hover:text-green-800">La partie Architecture</a></li>
+                    <li><a href="ytca25.html" class="text-green-600 hover:text-green-800">Détails sur l'évènement</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-green-800 mb-12 animate-fade-in">Détails</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img1.jpg" alt="Projet 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-green-800">L'espace Public Intelligent</h4>
+                        <p class="text-gray-600">C'est une vue complète du projet</p>
+                        <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img2.jpg" alt="Projet 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-green-800">Photo 02</h4>
+                        <p class="text-gray-600">Description de photo 02</p>
+                        <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img3.jpg" alt="Projet 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-green-800">Photo 03</h4>
+                        <p class="text-gray-600">Description de photo 03</p>
+                        <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="assets/images/slides/img4.jpg" alt="Projet 4" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-green-800">Photo 04</h4>
+                        <p class="text-gray-600">Description de photo 04</p>
+                        <a href="#" class="text-green-600 hover:text-green-800 font-semibold">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.x.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://facebook.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="https://github.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
+            </div>
+            <p class="text-sm">Général: <a href="mailto:civitas.lumen@gmail.com" class="text-white hover:underline">civitas.lumen@gmail.com</a> | Support: <a href="mailto:hblf.developer@gmail.com" class="text-white hover:underline">hblf.developer@gmail.com</a></p>
+            <p class="text-sm">Pour les problèmes techniques, contactez Adam DARS au <a href="tel:+212609142488" class="text-white hover:underline">+212609142488</a></p>
+            <div class="mt-4">
+                <a href="http://p1.ytca.com/" class="text-white hover:text-green-200">p1.ytca.com</a>
+            </div>
+            <p class="mt-2">Copyright © 2025. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

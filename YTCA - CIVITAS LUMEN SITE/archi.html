@@ -1,0 +1,226 @@
+<!-- ADAM -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CIVITAS LUMEN - Architecture">
+    <meta name="author" content="Adam DARS">
+    <title>CIVITAS LUMEN - Architecture</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            background: #fff;
+        }
+        .modal img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .modal .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0,128,0,0.7);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        .modal .close-button:hover {
+            background: rgba(0,128,0,0.9);
+        }
+        .section-bg {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(209,250,229,0.95));
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-green-100 font-sans">
+    <!-- this is thenavigation bar -->
+    <nav class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide">CIVITAS LUMEN</a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-green-200 transition">Accueil</a>
+                <a href="ytca25.html" class="hover:text-green-200 transition">YTCA 2025</a>
+                <a href="app.html" class="hover:text-green-200 transition">Application</a>
+                <a href="archi.html" class="hover:text-green-200 transition font-bold">Architecture</a>
+                <a href="contact.html" class="hover:text-green-200 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Architecture Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-extrabold text-center text-green-800 mb-16 animate-fade-in">Architecture</h1>
+            <!-- Modélisation 3D -->
+            <div class="section-bg mb-16">
+                <h2 class="text-3xl font-semibold text-green-800 mb-8 text-center">Modélisation 3D</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover-effect transition duration-300">
+                        <img src="assets/images/portfolio/img1.jpg" alt="Modélisation 1" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white font-semibold">Modèle 3D</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover-effect transition duration-300">
+                        <img src="assets/images/portfolio/img2.jpg" alt="Modélisation 2" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white font-semibold">Modèle 3D</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover-effect transition duration-300">
+                        <img src="assets/images/portfolio/img3.jpg" alt="Modélisation 3" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white font-semibold">Modèle 3D</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover-effect transition duration-300">
+                        <img src="assets/images/portfolio/img4.jpg" alt="Modélisation 4" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white font-semibold">Modèle 3D</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Матériaux utilisés -->
+            <div class="section-bg mb-16">
+                <h2 class="text-3xl font-semibold text-green-800 mb-8 text-center">Matériaux utilisés</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover-effect transition duration-300 cursor-pointer" onclick="openModal('restaurant-modal')">
+                        <img src="assets/images/portfolio/restaurant.png" alt="Restaurant" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white font-semibold">Restaurant</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transform hover-effect transition duration-300 cursor-pointer" onclick="openModal('musee-modal')">
+                        <img src="assets/images/portfolio/musee.png" alt="Musée" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-green-600 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white font-semibold">Musée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modals -->
+            <div id="restaurant-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" onclick="closeModal('restaurant-modal')">×</span>
+                    <img src="assets/images/portfolio/restaurant.png" alt="Restaurant Full">
+                </div>
+            </div>
+            <div id="musee-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" onclick="closeModal('musee-modal')">×</span>
+                    <img src="assets/images/portfolio/musee.png" alt="Musée Full">
+                </div>
+            </div>
+            <!-- Détails -->
+            <div class="section-bg">
+                <h3 class="text-2xl font-semibold text-green-800 mb-6">Restaurant</h3>
+                <p class="text-gray-600 mb-4"><strong>Palette de couleurs :</strong> tons chauds et élégants, notamment le beige crème, le marron profond, le vert olive, le bleu sarcelle et le noir. Cette palette crée une ambiance naturelle et raffinée, typique de l’esthétique marocaine.</p>
+                <p class="text-gray-600 mb-4"><strong>Ambiance :</strong> une atmosphère chaleureuse et luxueuse, inspirée des intérieurs marocains traditionnels, avec arches, lanternes et espaces confortables.</p>
+                <p class="text-gray-600 mb-4"><strong>Matières utilisées :</strong> carreaux texturés, pierres naturelles, bois et zelliges. Ces matériaux renforcent le caractère artisanal et authentique de l’espace.</p>
+                <p class="text-gray-600 mb-4"><strong>Lumières :</strong> lanternes marocaines, suspensions et éclairages dorés créent une lumière douce et intime, idéale pour une expérience sensorielle unique.</p>
+                <p class="text-gray-600 mb-4"><strong>Architecture :</strong> présence d’arcs, de motifs géométriques sculptés, de moucharabiehs et de structures en terre crue, en hommage à l’architecture nord-africaine traditionnelle.</p>
+                <p class="text-gray-600 mb-4"><strong>Décorations :</strong> poteries aux motifs riches, paniers tressés et plantes d’intérieur viennent compléter l’ambiance avec couleur et culture.</p>
+                <h3 class="text-2xl font-semibold text-green-800 mb-6 mt-8">Musée</h3>
+                <p class="text-gray-600 mb-4"><strong>Matières utilisées :</strong> carrelages décoratifs, pierres taillées et bois sculpté sont les matériaux dominants, évoquant la solidité et le patrimoine architectural du Maroc.</p>
+                <p class="text-gray-600 mb-4"><strong>Art et Artisanat :</strong> objets artistiques amazighs et africains comme des poteries, masques et perles. Un hommage au savoir-faire ancestral et à la diversité des traditions artisanales.</p>
+                <p class="text-gray-600 mb-4"><strong>Musique et danse :</strong> instruments traditionnels tels que les tambours et le guembri, accompagnés de costumes vivants et colorés. Cela met en valeur le rôle de la musique dans les célébrations et la transmission culturelle.</p>
+                <p class="text-gray-600 mb-4"><strong>Textiles et vêtements :</strong> tenues traditionnelles et modernes brodées, aux motifs variés et tissus riches. Elles expriment l'identité, l’élégance et l’héritage culturel.</p>
+                <p class="text-gray-600"><strong>Culture :</strong> symboles anciens, gastronomie locale et vêtements traditionnels incarnent la vie quotidienne, les croyances et les expressions des sociétés marocaines et nord-africaines.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.x.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://facebook.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="https://github.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
+            </div>
+            <p class="text-sm">Général: <a href="mailto:civitas.lumen@gmail.com" class="text-white hover:underline">civitas.lumen@gmail.com</a> | Support: <a href="mailto:hblf.developer@gmail.com" class="text-white hover:underline">hblf.developer@gmail.com</a></p>
+            <p class="text-sm">Pour les problèmes techniques, contactez Adam DARS au <a href="tel:+212609142488" class="text-white hover:underline">+212609142488</a></p>
+            <div class="mt-4">
+                <a href="http://p1.ytca.com/" class="text-white hover:text-green-200">p1.ytca.com</a>
+            </div>
+            <p class="mt-2">Copyright © 2025. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Modal -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
