@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CIVITAS LUMEN - Tableau de Bord">
+    <meta name="author" content="Adam DARS">
+    <title>CIVITAS LUMEN - Tableau de Bord</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes highlightNew {
+            0% { background-color: #10b981; }
+            100% { background-color: transparent; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        .highlight-new {
+            animation: highlightNew 2s ease-out forwards;
+        }
+        .sensor-card, .rfid-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sensor-card:hover, .rfid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+        .section-bg {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(209,250,229,0.95));
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .rfid-table {
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: #10b981 #e5e7eb;
+        }
+        .rfid-table::-webkit-scrollbar {
+            width: 8px;
+        }
+        .rfid-table::-webkit-scrollbar-track {
+            background: #e5e7eb;
+            border-radius: 8px;
+        }
+        .rfid-table::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 8px;
+        }
+        .status-accepted {
+            background-color: #10b981;
+            color: white;
+        }
+        .status-rejected {
+            background-color: #ef4444;
+            color: white;
+        }
+        .refresh-button:hover, .export-button:hover {
+            background-color: #059669;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-green-100 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wide">CIVITAS LUMEN</a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-green-200 transition">Accueil</a>
+                <a href="ytca25.html" class="hover:text-green-200 transition">YTCA 2025</a>
+                <a href="app.html" class="hover:text-green-200 transition">Application</a>
+                <a href="archi.html" class="hover:text-green-200 transition">Architecture</a>
+                <a href="dashboard.html" class="hover:text-green-200 transition font-bold">Tableau de Bord</a>
+                <a href="contact.html" class="hover:text-green-200 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-extrabold text-center text-green-800 mb-16 animate-fade-in">Tableau de Bord</h1>
+
+            <!-- RFID State -->
+            <div class="section-bg mb-16">
+                <h2 class="text-3xl font-semibold text-green-800 mb-8 text-center">État RFID</h2>
+                <div class="rfid-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                    <i class="fas fa-id-card text-green-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-green-800 mb-2">Dernier Scan RFID</h3>
+                    <p id="rfid-uid" class="text-gray-600 text-lg">UID: En attente...</p>
+                    <p id="rfid-status" class="text-gray-600 text-lg">Statut: En attente...</p>
+                    <p id="rfid-timestamp" class="text-gray-600 text-lg">Heure: En attente...</p>
+                </div>
+            </div>
+
+            <!-- Sensor Data -->
+            <div class="section-bg mb-16">
+                <h2 class="text-3xl font-semibold text-green-800 mb-8 text-center">Données des Capteurs</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Sensor 1 -->
+                    <div class="sensor-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                        <i class="fas fa-thermometer-half text-green-600 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">Capteur 1</h3>
+                        <p class="text-gray-600 text-lg">Température: 22.5°C</p>
+                    </div>
+                    <!-- Sensor 2 -->
+                    <div class="sensor-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                        <i class="fas fa-tint text-green-600 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">Capteur 2</h3>
+                        <p class="text-gray-600 text-lg">Humidité: 65%</p>
+                    </div>
+                    <!-- Sensor 3 -->
+                    <div class="sensor-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                        <i class="fas fa-lightbulb text-green-600 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">Capteur 3</h3>
+                        <p class="text-gray-600 text-lg">Luminosité: 320 lux</p>
+                    </div>
+                    <!-- Sensor 4 -->
+                    <div class="sensor-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                        <i class="fas fa-wind text-green-600 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">Capteur 4</h3>
+                        <p class="text-gray-600 text-lg">Vitesse du vent: 12 km/h</p>
+                    </div>
+                    <!-- Sensor 5 -->
+                    <div class="sensor-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                        <i class="fas fa-volume-up text-green-600 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">Capteur 5</h3>
+                        <p class="text-gray-600 text-lg">Niveau sonore: 45 dB</p>
+                    </div>
+                    <!-- Sensor 6 -->
+                    <div class="sensor-card bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in">
+                        <i class="fas fa-smog text-green-600 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">Capteur 6</h3>
+                        <p class="text-gray-600 text-lg">Qualité de l'air: 75 AQI</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RFID Log -->
+            <div class="section-bg">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-semibold text-green-800">Journal des Scans RFID</h2>
+                    <div class="space-x-4">
+                        <button id="refresh-button" class="refresh-button bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                            <i class="fas fa-sync-alt mr-2"></i>Rafraîchir
+                        </button>
+                        <button id="export-button" class="export-button bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                            <i class="fas fa-download mr-2"></i>Exporter CSV
+                        </button>
+                    </div>
+                </div>
+                <div class="rfid-table">
+                    <table class="w-full text-left text-gray-600">
+                        <thead class="bg-green-800 text-white sticky top-0">
+                            <tr>
+                                <th class="p-3">UID</th>
+                                <th class="p-3">Statut</th>
+                                <th class="p-3">Heure</th>
+                                <th class="p-3">Appareil</th>
+                                <th class="p-3">Signal (RSSI)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rfid-log-body">
+                            <!-- Logs will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.x.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://facebook.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="https://github.com" class="text-white hover:text-green-200 transform hover:scale-125 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
+            </div>
+            <p class="text-sm">Général: <a href="mailto:civitas.lumen@gmail.com" class="text-white hover:underline">civitas.lumen@gmail.com</a> | Support: <a href="mailto:hbs01.official@gmail.com" class="text-white hover:underline">hbs01.official@gmail.com</a></p>
+            <p class="text-sm">Pour les problèmes techniques, contactez Adam DARS au <a href="tel:+212609142488" class="text-white hover:underline">+212609142488</a></p>
+            <div class="mt-4">
+                <a href="http://p1.ytca.com/" class="text-white hover:text-green-200">p1.ytca.com</a>
+            </div>
+            <p class="mt-2">Copyright © 2025. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Real-Time RFID Data -->
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            databaseURL: "https://civitas-lumen-01-default-rtdb.firebaseio.com/"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Store logs for export
+        let rfidLogs = [];
+
+        // Real-time listener for RFID data
+        database.ref('access_logs').orderByChild('timestamp').limitToLast(50).on('value', (snapshot) => {
+            try {
+                const data = snapshot.val();
+                if (!data) {
+                    document.getElementById('rfid-uid').textContent = 'Aucune donnée';
+                    document.getElementById('rfid-status').textContent = '';
+                    document.getElementById('rfid-timestamp').textContent = '';
+                    document.getElementById('rfid-log-body').innerHTML = '';
+                    return;
+                }
+
+                // Convert Firebase data to array and sort by timestamp (newest first)
+                rfidLogs = Object.entries(data)
+                    .map(([key, value]) => ({ key, ...value }))
+                    .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                // Update RFID State (latest scan)
+                const latest = rfidLogs[0];
+                if (latest) {
+                    document.getElementById('rfid-uid').textContent = `UID: ${latest.uid || 'N/A'}`;
+                    document.getElementById('rfid-status').textContent = `Statut: ${latest.status || 'N/A'}`;
+                    document.getElementById('rfid-status').className = `text-lg ${latest.status === 'ACCEPTE' ? 'text-green-600' : 'text-red-600'}`;
+                    document.getElementById('rfid-timestamp').textContent = `Heure: ${latest.timestamp || 'N/A'}`;
+                }
+
+                // Update RFID Log Table
+                const tbody = document.getElementById('rfid-log-body');
+                tbody.innerHTML = '';
+                rfidLogs.forEach((log, index) => {
+                    const row = document.createElement('tr');
+                    row.className = `border-b border-gray-200 ${index === 0 ? 'highlight-new' : ''}`;
+                    row.innerHTML = `
+                        <td class="p-3">${log.uid || 'N/A'}</td>
+                        <td class="p-3">
+                            <span class="inline-block px-3 py-1 rounded-full text-sm font-semibold ${log.status === 'ACCEPTE' ? 'status-accepted' : 'status-rejected'}">
+                                ${log.status || 'N/A'}
+                            </span>
+                        </td>
+                        <td class="p-3">${log.timestamp || 'N/A'}</td>
+                        <td class="p-3">${log.device_id || 'N/A'}</td>
+                        <td class="p-3">${log.rssi || 'N/A'} dBm</td>
+                    `;
+                    tbody.insertBefore(row, tbody.firstChild); // Newest first
+                });
+            } catch (error) {
+                console.error('Error processing RFID data:', error);
+                document.getElementById('rfid-uid').textContent = 'Erreur de chargement';
+                document.getElementById('rfid-status').textContent = '';
+                document.getElementById('rfid-timestamp').textContent = '';
+            }
+        }, (error) => {
+            console.error('Firebase listener error:', error);
+            document.getElementById('rfid-uid').textContent = 'Erreur de connexion';
+            document.getElementById('rfid-status').textContent = '';
+            document.getElementById('rfid-timestamp').textContent = '';
+        });
+
+        // Refresh button (force re-fetch)
+        document.getElementById('refresh-button').addEventListener('click', () => {
+            database.ref('access_logs').once('value'); // Trigger listener
+        });
+
+        // Export to CSV
+        document.getElementById('export-button').addEventListener('click', () => {
+            if (rfidLogs.length === 0) {
+                alert('Aucune donnée à exporter.');
+                return;
+            }
+
+            // Prepare data for CSV
+            const headers = ['UID', 'Statut', 'Heure', 'Appareil', 'Signal (RSSI)'];
+            const data = rfidLogs.map(log => [
+                log.uid || 'N/A',
+                log.status || 'N/A',
+                log.timestamp || 'N/A',
+                log.device_id || 'N/A',
+                log.rssi ? `${log.rssi} dBm` : 'N/A'
+            ]);
+            data.unshift(headers); // Add headers
+
+            // Create worksheet and workbook
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'RFID_Logs');
+
+            // Export to CSV
+            XLSX.write(wb, 'rfid_logs.csv');
+        });
+    </script>
+</body>
+</html>
